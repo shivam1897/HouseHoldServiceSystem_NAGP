@@ -1,11 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Net.Http;
-using System.Threading.Tasks;
 
 namespace Service.Admin.Controllers
 {
@@ -16,14 +12,13 @@ namespace Service.Admin.Controllers
         private readonly ILogger<WeatherForecastController> _logger;
         private readonly IConfiguration _config;
         private readonly IAdminOfficeServices _adminServices;
-        private readonly HttpClient _httpClient;
+        private HttpClient _httpClient;
 
-        public WeatherForecastController(ILogger<WeatherForecastController> logger, IConfiguration config, IAdminOfficeServices adminServices, HttpClient httpClient)
+        public WeatherForecastController(ILogger<WeatherForecastController> logger, IConfiguration config, IAdminOfficeServices adminServices)
         {
             _logger = logger;
             _config = config;
             _adminServices = adminServices;
-            _httpClient = httpClient;
         }
 
         [HttpGet]
@@ -41,6 +36,7 @@ namespace Service.Admin.Controllers
         [HttpGet("/circuit")]
         public HttpResponseMessage CircuitBreakerTest()
         {
+            _httpClient = new HttpClient();
             var requesURL = _config.GetValue<string>("SerivceProviderURL");
             return _httpClient.GetAsync(requesURL + "/provider/circuit").Result;
         }
