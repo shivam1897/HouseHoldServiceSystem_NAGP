@@ -1,9 +1,6 @@
 ﻿using Grpc.Net.Client;
 using Service.Shared;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace Service.Admin
 {
@@ -13,7 +10,7 @@ namespace Service.Admin
 
         public ServiceProviderGrpc()
         {
-            var channel = GrpcChannel.ForAddress("http://localhost:7002");
+            var channel = GrpcChannel.ForAddress("http://localhost:7012");
             _client = new SreviceProvider.SreviceProviderClient(channel);
         }
 

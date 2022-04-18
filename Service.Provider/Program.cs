@@ -26,6 +26,11 @@ namespace Service.Provider
                     {
                         options.Listen(IPAddress.Any, 7002, listedOption =>
                         {
+                            listedOption.Protocols = HttpProtocols.Http1;
+                        });
+
+                        options.Listen(IPAddress.Any, 7012, listedOption =>
+                        {
                             listedOption.Protocols = HttpProtocols.Http2;
                         });
                     });

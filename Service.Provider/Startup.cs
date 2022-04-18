@@ -1,16 +1,12 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
-using Microsoft.OpenApi.Models;
 using Polly;
 using Polly.Extensions.Http;
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Net.Http;
 using System.Threading.Tasks;
 
@@ -44,12 +40,27 @@ namespace Service.Provider
             }
 
             app.UseRouting();
-
+            
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
                 endpoints.MapGrpcService<ServiceProviderGrpc>();
+                endpoints.MapGet("provider/randomTimeOut", (HttpContext request) =>
+                {
+                    return RandomTimeOut();
+                }).WithDisplayName("RandomTimeOut");
             });
+        }
+
+        private static Task RandomTimeOut()
+        {
+            var random = new Random();
+            var value = random.Next(0, 2);
+            if (value == 0)
+            {
+                throw new Exception("Random Timeout");
+            }
+            return Task.FromResult(value);
         }
 
         static IAsyncPolicy<HttpResponseMessage> GetCircuitBreakerPolicy()
