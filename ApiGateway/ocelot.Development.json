@@ -13,19 +13,19 @@
       "DownstreamScheme": "http",
       "UpstreamPathTemplate": "/admin/{id}",
       "UpstreamHttpMethod": [ "GET" ]
+    },
+    {
+      "ServiceName": "Service.Provider",
+      "DownstreamPathTemplate": "/provider/randomTimeOut",
+      "DownstreamScheme": "http",
+      "UpstreamPathTemplate": "/provider/randomTimeOut",
+      "UpstreamHttpMethod": [ "GET" ]//,
+      //"QoSOptions": {
+      //  "ExceptionsAllowedBeforeBreaking": 3,
+      //  "DurationOfBreak": 1000,
+      //  "TimeoutValue": 5000
+      //}
     }
-    //{
-    //  "ServiceName": "Service.Provider",
-    //  "DownstreamPathTemplate": "/api/provider/weatherforecast/circuit",
-    //  "DownstreamScheme": "http",
-    //  "UpstreamPathTemplate": "/provider/circuit",
-    //  "UpstreamHttpMethod": [ "GET" ],
-    //  "QoSOptions": {
-    //    "ExceptionsAllowedBeforeBreaking": 3,
-    //    "DurationOfBreak": 1000,
-    //    "TimeoutValue": 5000
-    //  }
-    //}
   ],
   "GlobalConfiguration": {
     "Host": "consul",
