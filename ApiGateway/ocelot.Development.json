@@ -1,0 +1,38 @@
+{
+  "Routes": [
+    {
+      "ServiceName": "Service.Admin",
+      "DownstreamPathTemplate": "/api/admin/weatherforecast/",
+      "DownstreamScheme": "http",
+      "UpstreamPathTemplate": "/admin",
+      "UpstreamHttpMethod": [ "GET" ]
+    },
+    {
+      "ServiceName": "Service.Admin",
+      "DownstreamPathTemplate": "/api/admin/weatherforecast/{id}",
+      "DownstreamScheme": "http",
+      "UpstreamPathTemplate": "/admin/{id}",
+      "UpstreamHttpMethod": [ "GET" ]
+    },
+    {
+      "ServiceName": "Service.Provider",
+      "DownstreamPathTemplate": "/api/provider/weatherforecast/circuit",
+      "DownstreamScheme": "http",
+      "UpstreamPathTemplate": "/provider/circuit",
+      "UpstreamHttpMethod": [ "GET" ],
+      "QoSOptions": {
+        "ExceptionsAllowedBeforeBreaking": 3,
+        "DurationOfBreak": 1000,
+        "TimeoutValue": 5000
+      }
+    }
+
+
+  ],
+  "GlobalConfiguration": {
+    "Host": "consul",
+    "Port": "8500",
+    "Type": "Consul"
+  }
+  
+}

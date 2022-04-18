@@ -1,0 +1,20 @@
+﻿
+syntax = "proto3";
+option csharp_namespace = "Service.Provider";
+
+service SreviceProvider{
+	rpc GetServiceProviderAvailiable (ServiceProviderRequest) returns (ServiceProviderResponse);
+}
+
+message ServiceProviderRequest {
+  string request_id = 1;
+  int32 service_type = 2;
+  int32 location = 3;
+}
+
+message ServiceProviderResponse {
+  string request_id = 1;
+  string name = 2;
+  int32 contact_number = 3;
+  bool availiable = 4;
+}
