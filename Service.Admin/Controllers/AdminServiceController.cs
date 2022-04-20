@@ -7,14 +7,14 @@ namespace Service.Admin.Controllers
 {
     [ApiController]
     [Route("api/admin/[controller]")]
-    public class WeatherForecastController : ControllerBase
+    public class AdminServiceController : ControllerBase
     {
-        private readonly ILogger<WeatherForecastController> _logger;
+        private readonly ILogger<AdminServiceController> _logger;
         private readonly IConfiguration _config;
         private readonly IAdminOfficeServices _adminServices;
         private HttpClient _httpClient;
 
-        public WeatherForecastController(ILogger<WeatherForecastController> logger, IConfiguration config, IAdminOfficeServices adminServices)
+        public AdminServiceController(ILogger<AdminServiceController> logger, IConfiguration config, IAdminOfficeServices adminServices)
         {
             _logger = logger;
             _config = config;
