@@ -63,11 +63,5 @@ namespace Service.Provider
             return Task.FromResult(value);
         }
 
-        static IAsyncPolicy<HttpResponseMessage> GetCircuitBreakerPolicy()
-        {
-            return HttpPolicyExtensions
-                .HandleTransientHttpError()
-                .CircuitBreakerAsync(5, TimeSpan.FromSeconds(60));
-        }
     }
 }
