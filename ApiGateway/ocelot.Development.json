@@ -5,26 +5,36 @@
       "DownstreamPathTemplate": "/api/admin/weatherforecast/",
       "DownstreamScheme": "http",
       "UpstreamPathTemplate": "/admin",
-      "UpstreamHttpMethod": [ "GET" ]
+      "UpstreamHttpMethod": [ "GET" ],
+      "QoSOptions": {
+        "ExceptionsAllowedBeforeBreaking": 1,
+        "DurationOfBreak": 1000,
+        "TimeoutValue": 10000
+      }
     },
     {
       "ServiceName": "Service.Admin",
       "DownstreamPathTemplate": "/api/admin/weatherforecast/{id}",
       "DownstreamScheme": "http",
       "UpstreamPathTemplate": "/admin/{id}",
-      "UpstreamHttpMethod": [ "GET" ]
+      "UpstreamHttpMethod": [ "GET" ],
+      "QoSOptions": {
+        "ExceptionsAllowedBeforeBreaking": 2,
+        "DurationOfBreak": 1000,
+        "TimeoutValue": 10000
+      }
     },
     {
       "ServiceName": "Service.Provider",
       "DownstreamPathTemplate": "/provider/randomTimeOut",
       "DownstreamScheme": "http",
       "UpstreamPathTemplate": "/provider/randomTimeOut",
-      "UpstreamHttpMethod": [ "GET" ]//,
-      //"QoSOptions": {
-      //  "ExceptionsAllowedBeforeBreaking": 3,
-      //  "DurationOfBreak": 1000,
-      //  "TimeoutValue": 5000
-      //}
+      "UpstreamHttpMethod": [ "GET" ],
+      "QoSOptions": {
+        "ExceptionsAllowedBeforeBreaking": 1,
+        "DurationOfBreak": 1000,
+        "TimeoutValue": 5000
+      }
     }
   ],
   "GlobalConfiguration": {
